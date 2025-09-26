@@ -8,6 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+//mutadores y accesores
+use Illuminate\Database\Eloquent\Casts\Attribute;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -42,4 +45,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    /**
+     * Mutador y accesor
+     * Crearemos una función name para la columna name de la tabla users
+     */
+     protected function name(): Attribute{
+        return new Attribute(
+            set: function($value){
+                return strtolower($value);
+            }
+        );
+     }   
+
 }
