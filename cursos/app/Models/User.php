@@ -51,7 +51,7 @@ class User extends Authenticatable
      */
      protected function name(): Attribute{
         return new Attribute(
-            set: function($value){
+            set:function($value){
                 return strtolower($value);
             }
         );
