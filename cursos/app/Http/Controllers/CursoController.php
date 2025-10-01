@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Curso;
+use App\Http\Requests\DataFormCursos;
 
 class CursoController extends Controller
 {
@@ -15,13 +16,8 @@ class CursoController extends Controller
     public function create(){
         return view('cursos.create');
     }
-    public function dataFormCursos(Request $request){
-        $curso = new Curso();
-        $curso->nombre = $request->nombre;
-        $curso->descripcion = $request->descripcion;
-        $curso->categoria = $request->categoria;
-
-        $curso->save();
+    public function dataFormCursos(DataFormCursos $request){
+        $curso = Curso::create($request->all());
         return redirect()->route('cursos.show', $curso->id);
     }
     public function show($id){
@@ -33,12 +29,23 @@ class CursoController extends Controller
         return view('cursos.edit', compact('curso'));
     }
     public function update(Request $request){
+
+         //request validate
+        $request->validate([
+            'nombre'=> 'required',
+            'descripcion' => 'required',
+            'categoria' => 'required'
+        ]);
+
         $curso = Curso::find($request->id);
-        $curso->nombre = $request->nombre;
-        $curso->descripcion = $request->descripcion;
-        $curso->categoria = $request->categoria;
-        $curso->save();
+        $curso->update($request->all());
+
         return redirect()->route('cursos.show', $curso->id);
+    }
+    public function destroy($id){
+        $curso = Curso::find($id);
+        $curso->delete();
+        return redirect()->route('cursos.index');
     }
     
 }

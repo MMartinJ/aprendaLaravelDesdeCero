@@ -14,15 +14,24 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
         <div class="formInput">
             <label for="nombre">Nombre: </label>
-            <input type="text" name="nombre" id="nombre" value="{{ $curso->nombre }}">
+            <input type="text" name="nombre" id="nombre" value="{{ old('nombre',$curso->nombre) }}">
+            @error('nombre')
+                {{ $message }}
+            @enderror
         </div>
         <div class="formInput">
             <label for="descripcion">Descripcion: </label>
-            <textarea type="text" name="descripcion" id="descripcion" rows="5">{{ $curso->descripcion }}</textarea>
+            <textarea type="text" name="descripcion" id="descripcion" rows="5">{{ old('descripcion',$curso->descripcion) }}</textarea>
+            @error('descripcion')
+                {{ $message }}
+            @enderror
         </div>
         <div class="formInput">
             <label for="categoria">Categoria: </label>
-            <input type="text" name="categoria" id="categoria" value="{{ $curso->categoria }}">
+            <input type="text" name="categoria" id="categoria" value="{{ old('categoria',$curso->categoria) }}">
+            @error('categoria')
+                {{ $message }}
+            @enderror
         </div>
         <div class="formInput">
             <button type="submit">Actualizar curso</button>
