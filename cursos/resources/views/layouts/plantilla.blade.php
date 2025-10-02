@@ -8,6 +8,20 @@
     <title>@yield('title')</title>
 </head>
 <body>
+    <header>
+         <nav>
+            <div class="menu">
+                <a href="/">Escuela</a>
+                <div class="menu-items">
+                    <ul class="items">
+                        <li><a href="{{ route('home') }}">Home</a></li>
+                        <li><a href="{{ route('cursos.index') }}">Cursos</a></li>
+                        <li><a href="{{ route('nosotros') }}">Nosotros</a></li>
+                    </ul>
+                </div>
+            </div>
+         </nav>
+    </header>
     @yield('content')
 </body>
 </html>

@@ -18,10 +18,10 @@ class CursoController extends Controller
     }
     public function dataFormCursos(DataFormCursos $request){
         $curso = Curso::create($request->all());
-        return redirect()->route('cursos.show', $curso->id);
+        return view('cursos.show', ['curso'=>$curso]);
     }
-    public function show($id){
-        $curso = Curso::find($id);
+    public function show(Curso $curso){
+        //$curso = Curso::find($id);
         return view('cursos.show',['curso'=>$curso]);
     }
     public function edit($id){
