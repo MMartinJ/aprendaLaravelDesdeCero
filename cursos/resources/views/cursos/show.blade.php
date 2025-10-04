@@ -15,7 +15,7 @@
     <p>Categoria del curso: {{ $curso->categoria }}</p>
 
 
-    <p><a href="{{ route('cursos.edit', $curso->id) }}">Editar el curso</p>
+    <p><a href="{{ route('cursos.edit', $curso->id) }}">Editar el curso</a></p>
 
     <form action="{{ route('cursos.destroy', $curso->id) }}" method="POST">
         @csrf
