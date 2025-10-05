@@ -1,12 +1,12 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CursoController;
+use App\Http\Controllers\ContactanosController;
 
-//Email
-use App\Mail\ContactanosMailable;
-use Illuminate\Support\Facades\Mail;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -34,9 +34,6 @@ Route::controller(CursoController::class)->group(function(){
     Route::delete('cursos/{id}', 'destroy')->name('cursos.destroy');
 });
 
-Route::get('contactanos', function(){
-    $correo = new ContactanosMailable;
-    Mail::to('arupakasan86@gmail.com')->send($correo);
-    return "Mensaje Enviado";
-});
+Route::get('contactanos', [ContactanosController::class, 'index'])->name('contactanos.index');
+
 
