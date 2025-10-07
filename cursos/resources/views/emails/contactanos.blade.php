@@ -9,5 +9,9 @@
 <body>
     <h3>Titulo del mensaje</h3>
     <p>Mensaje de prueba para el email de contacto</p>
+
+    <p><b>Nombre:</b> {{ $contacto['nombre'] }}</p>
+    <p><b>Email:</b> {{ $contacto['email'] }}</p>
+    <p><b>Mensaje:</b> {{ $contacto['mensaje'] }}</p>
 </body>
 </html>

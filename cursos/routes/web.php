@@ -34,6 +34,10 @@ Route::controller(CursoController::class)->group(function(){
     Route::delete('cursos/{id}', 'destroy')->name('cursos.destroy');
 });
 
-Route::get('contactanos', [ContactanosController::class, 'index'])->name('contactanos.index');
+Route::controller(ContactanosController::class)->group(function(){
+    Route::get('contactanos', 'index')->name('contactanos.index');
+    Route::post('contactanos/store', 'store')->name('contactanos.store');
+});
+
 
 

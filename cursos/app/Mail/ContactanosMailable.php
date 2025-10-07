@@ -16,12 +16,15 @@ class ContactanosMailable extends Mailable
     //Propiedad Asunto
     public $subject = "informacion de contacto";
 
+    //propiedad de los datos del email
+    public $contacto;
+
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($data_email)
     {
-        //
+        $this->contacto = $data_email;
     }
 
     /**
