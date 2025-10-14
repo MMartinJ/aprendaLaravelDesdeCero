@@ -11,6 +11,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class User extends Authenticatable
 {
@@ -84,9 +85,19 @@ class User extends Authenticatable
         return $this->hasMany((Video::class));
     }
 
+    //relacion uno a muchos 
+    public function comments(): HasMany{
+        return $this->hasMany(Comment::class);
+    }
+
     //relacion de muchos a muchos con pivote en la tabla role_user
     public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Role::class);
+    }
+
+    //relacion uno a uno polimorfica
+    public function image(): MorphOne{
+        return $this->morphOne(Image::class, 'imageable');
     }
 }
