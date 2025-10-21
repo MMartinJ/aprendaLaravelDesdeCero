@@ -11,6 +11,10 @@ export default {
         './resources/views/**/*.blade.php',
     ],
 
+    corePlugins: {
+        container: false
+    },
+
     theme: {
         extend: {
             fontFamily: {
