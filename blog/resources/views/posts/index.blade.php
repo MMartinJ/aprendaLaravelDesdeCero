@@ -10,7 +10,7 @@
                      @endforeach       
                     </div>
                     <h1 class="text-4xl text-white leading-8 font-bold">
-                        <a href="" target="_blank" rel="noopener norefererrer">
+                        <a href="{{ route('post.show',$post) }}" rel="noopener norefererrer">
                             {{ $post->title }}
                         </a>
                     </h1>

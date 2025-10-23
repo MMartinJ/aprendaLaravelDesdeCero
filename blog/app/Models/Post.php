@@ -12,22 +12,31 @@ class Post extends Model
     use HasFactory;
 
     //relacion uno a muchos inversa
-    public function user(): BelongsTo{
+    public function user(): BelongsTo
+    {
         return $this->belongsTo(User::class);
     }
 
     //relacion uno a muchos inversa
-    public function category(): BelongsTo{
+    public function category(): BelongsTo
+    {
         return $this->belongsTo(Category::class);
     }
 
     //relacion de muchos a muchos
-    public function tags(): BelongsToMany{
+    public function tags(): BelongsToMany
+    {
         return $this->belongsToMany(Tag::class);
     }
 
     //relacion uno a uno polimorfica
-    public function image(){
+    public function image()
+    {
         return $this->morphOne(Image::class, 'imageable');
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }
