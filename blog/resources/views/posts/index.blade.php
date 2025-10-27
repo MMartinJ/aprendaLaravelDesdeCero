@@ -6,7 +6,7 @@
 
                     <div>
                      @foreach ($post->tags as $tag)
-                         <a href="" class="inline-block px-3 h6 bg-gray-500 text-white">{{ $tag->nombre }}</a>
+                         <a href="{{ route('posts.tag',$tag) }}" class="inline-block px-3 h6 bg-gray-500 text-white">{{ $tag->nombre }}</a>
                      @endforeach       
                     </div>
                     <h1 class="text-4xl text-white leading-8 font-bold">
