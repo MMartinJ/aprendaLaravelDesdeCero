@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Tag;
 
 class TagController extends Controller
 {
@@ -12,7 +13,8 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        $tags = Tag::all();
+        return view('admin.tags.index', compact('tags'));
     }
 
     /**
@@ -20,7 +22,9 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        //saber de la ruta donde venimos (create o edit)
+        $routeName = request()->route()->getName();
+        return view('admin.tags.create',compact('routeName'));
     }
 
     /**
@@ -28,38 +32,62 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required',
+            'slug' => 'required|unique:tags'
+        ]);
+
+        $tag = Tag::create($request->all());
+        return redirect()
+        ->route('admin.tags.edit',compact('tag'))
+        ->with('info','La etiqueta se creó correctamente');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Tag $tag)
     {
-        //
+        return view('admin.tags.show');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Tag $tag)
     {
-        //
+        //saber de la ruta donde venimos (create o edit)
+        $routeName = request()->route()->getName();
+       return view('admin.tags.edit', compact('tag','routeName'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Tag $tag)
     {
-        //
+        $request->validate([
+            'nombre' => 'required',
+            'slug' => "required|unique:tags,slug,$tag->id"
+        ]);
+
+        $tag->update($request->all());
+
+        return redirect()
+        ->route('admin.tags.edit', $tag)
+        ->with('info','La etiqueta se actualizó correctamente');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Tag $tag)
     {
-        //
+        //Eliminar mensaje
+        $tag->delete();
+
+        return redirect()
+        ->route('admin.tags.index')
+        ->with('info','La Etiqueta: <strong>'.$tag->nombre.'</strong> ha sido eliminada');
     }
 }

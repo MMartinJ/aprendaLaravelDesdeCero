@@ -9,7 +9,7 @@
 @section('content')
 
     @if (session('info'))
-    <div class="alert alert-info" role="alert">
+    <div class="alert alert-warning" role="alert">
         {{ session('info') }}
     </div>
         
@@ -32,7 +32,7 @@
             @enderror
         </div>
         
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Actualizar Categoria</button>
     </form>
 @endsection
 

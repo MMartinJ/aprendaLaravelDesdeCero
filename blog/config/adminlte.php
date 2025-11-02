@@ -154,7 +154,7 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
+    'layout_fixed_sidebar' => true,
     'layout_fixed_navbar' => null,
     'layout_fixed_footer' => null,
     'layout_dark_mode' => null,
@@ -333,6 +333,13 @@ return [
             'text' => 'Categorias',
             'route' => 'admin.categories.index',
             'icon' => 'fas fa-fw fa-folder-open',
+            'active' => ['admin/categories*'],
+        ],
+        [
+            'text' => 'Etiquetas',
+            'route' => 'admin.tags.index',
+            'icon' => 'fas fa-fw fa-tags',
+            'active' => ['admin/tags*'],
         ],
         [
             'text' => 'change_password',

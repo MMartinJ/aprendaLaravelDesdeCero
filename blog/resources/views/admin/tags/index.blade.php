@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Admin Blog')
+@section('title', 'Etiquetas')
 
 @section('content_header')
-    <h1>Lista de todos los tags</h1>
+    <h1>Lista de las etiquetas</h1>
 @stop
 
 @section('content')
@@ -16,7 +16,7 @@
     <div class="card">
         <div class="card-body">
             <div class="card-header">
-                <a class="btn btn-primary" href="{{ route('admin.tags.create') }}" ><i class="fas fa-plus"></i>&nbsp; Crear Tag</a>
+                <a class="btn btn-primary" href="{{ route('admin.tags.create') }}" ><i class="fas fa-plus"></i>&nbsp; Crear Etiqueta</a>
             </div>
             <table class="table">
                 <thead class="thead-dark">
@@ -28,14 +28,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($tag as $tags)
+                    @foreach ($tags as $tag)
                         <tr>
                             <th scope="row">{{ $tag->id }}</th>
                             <td>{{ $tag->nombre }}</td>
-                            <td>
+                            <td width="200px">
                                 <a class="btn btn-warning" href="{{ route('admin.tags.edit',$tag) }}">Editar</a>
                             </td>
-                            <td>
+                            <td width="200px">
                                 <form action="{{ route('admin.tags.destroy',$tag) }}" method="POST">
                                     @csrf
                                     @method('delete')
