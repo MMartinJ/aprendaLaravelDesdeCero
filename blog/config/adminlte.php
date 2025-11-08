@@ -351,32 +351,12 @@ return [
             'icon' => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url' => '#',
+                    'text' => 'Lista de Posts',
+                    'route' => 'admin.posts.index',
                 ],
                 [
-                    'text' => 'level_one',
-                    'url' => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url' => '#',
-                        ],
-                        [
-                            'text' => 'level_two',
-                            'url' => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url' => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url' => '#',
-                                ],
-                            ],
-                        ],
-                    ],
+                    'text' => 'Crear nuevo Post',
+                    'route' => 'admin.posts.create',
                 ],
                 [
                     'text' => 'level_one',
@@ -554,5 +534,5 @@ return [
     |
     */
 
-    'livewire' => false,
+    'livewire' => true,
 ];
