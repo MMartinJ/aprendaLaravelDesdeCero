@@ -11,7 +11,7 @@
 
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('admin.posts.store') }}" method="POST">
+            <form action="{{ route('admin.posts.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="user_id" id="user_id" value="{{ auth()->user()->id }}">
                 <div class="form-group">
@@ -53,6 +53,27 @@
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
+
+                <div class="form-group">
+
+                </div>
+                <!--image-->
+                <div class="row post-thumbnail my-4">
+                    <div class="col-lg-6">
+                        <img src="{{ Storage::url('post-placeholder.png')}}" alt="post-thumbnail" class="img-fluid" id="image">
+                    </div>
+                    <div class="col-lg-6">
+                        <h4>Subir imagen del post</h4>
+                        <div class="form-group mt-3">
+                            <input type="file" id="postImage" name="postImage">
+                            <div class="mt-3">
+                                Lorem ipsum.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
                 <div class="form-group">
                     <label for="Tags" class="form-label">Etiquetas:&nbsp; </label>
                     @foreach ($tags as $key => $value)
@@ -117,7 +138,22 @@
             .catch(error => {
                 console.error(error);
             });
+
+            //mostrar imagen del post
+            document.getElementById('postImage').addEventListener('change', mostrarImagen);
+
+            function mostrarImagen(e) {
+                let file = e.target.files[0];
+                let reader = new FileReader();
+                reader.onload = (e) => {
+                    console.log(e.target.result)
+                    document.getElementById('image').setAttribute('src', e.target.result)
+                };
+                reader.readAsDataURL(file);
+            }
+
     </script>
+    
 @endsection
 
 @section('css')
