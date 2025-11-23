@@ -107,7 +107,7 @@ class PostController extends Controller
 
         
         if($request->file('postImage')){
-            $url = Storage::put('public/post', $request->file('postImage'));
+            $url = Storage::put('public/posts', $request->file('postImage'));
             if($post->image){
                 Storage::delete($post->image->url);
                 $post->image->update(['url' => $url]);
