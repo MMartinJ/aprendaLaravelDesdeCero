@@ -76,6 +76,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        //authorize
+        $this->authorize('author', $post);
+
         $routeName = request()->route()->getName();
 
         $categories = Category::all();
@@ -103,6 +106,9 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
+        //authorize
+        $this->authorize('author', $post);
+        
         $post->update($request->all());
 
         
@@ -131,6 +137,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        //authorize
+        $this->authorize('author', $post);
         $post->delete();
 
         return redirect()->route('admin.posts.index')

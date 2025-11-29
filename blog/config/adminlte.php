@@ -325,8 +325,14 @@ return [
             //'url' => 'admin',
             'route' => 'admin.home',
             'icon' => 'fas fa-fw fa-tachometer-alt',
-            'label' => 4,
+            //'label' => 4,
             'label_color' => 'success',
+        ],
+        [
+            'text' => 'Usuarios',
+            //'url' => 'admin',
+            'route' => 'admin.users.index',
+            'icon' => 'fas fa-users fa-fw',
         ],
         ['header' => 'MENU ADMINISTRADOR'],
         [

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class PostRequest extends FormRequest
 {
@@ -41,7 +42,7 @@ class PostRequest extends FormRequest
         if($this->status == 2){
             $rules = array_merge($rules, [
                 'title' => 'required',
-                'slug' => 'required|unique:posts',
+                'slug' => ['required',Rule::unique('posts')->ignore($post->id)],
                 'status' => 'required|in:1,2',
                 'extract' => 'required',
                 'content' => 'required'

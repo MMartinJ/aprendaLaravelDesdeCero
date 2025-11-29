@@ -17,6 +17,9 @@ class PostController extends Controller
     //show post same category sidebar
     public function show(Post $post){
 
+        $this->authorize('published', $post);
+        
+
         $categoria = Post::where('category_id', $post->category_id)
         ->where('status',2)
         ->where('id', '!=', $post->id)
