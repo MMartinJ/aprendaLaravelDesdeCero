@@ -8,6 +8,10 @@ use App\Models\Tag;
 
 class TagController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin.tags.index');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -43,13 +47,6 @@ class TagController extends Controller
         ->with('info','La etiqueta se creó correctamente');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Tag $tag)
-    {
-        return view('admin.tags.show');
-    }
 
     /**
      * Show the form for editing the specified resource.

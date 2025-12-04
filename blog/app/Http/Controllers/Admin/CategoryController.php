@@ -8,6 +8,10 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin.categories.index');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -40,14 +44,6 @@ class CategoryController extends Controller
         return redirect()
         ->route('admin.categories.edit', $category)
         ->with('info','La categoría se creó correctamente');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Category $category)
-    {
-        return view('admin.categories.show');
     }
 
     /**

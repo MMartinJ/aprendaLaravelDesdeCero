@@ -263,7 +263,7 @@ return [
     'register_url' => 'register',
     'password_reset_url' => 'password/reset',
     'password_email_url' => 'password/email',
-    'profile_url' => false,
+    'profile_url' => 'user/profile',
     'disable_darkmode_routes' => false,
 
     /*
@@ -327,12 +327,21 @@ return [
             'icon' => 'fas fa-fw fa-tachometer-alt',
             //'label' => 4,
             'label_color' => 'success',
+            'can' => 'admin.home'
         ],
         [
             'text' => 'Usuarios',
             //'url' => 'admin',
             'route' => 'admin.users.index',
             'icon' => 'fas fa-users fa-fw',
+            'can' => 'admin.users.index'
+        ],
+        [
+            'text' => 'Roles',
+            //'url' => 'admin',
+            'route' => 'admin.roles.index',
+            'icon' => 'fas fa-id-card fa-fw',
+            
         ],
         ['header' => 'MENU ADMINISTRADOR'],
         [
@@ -340,17 +349,14 @@ return [
             'route' => 'admin.categories.index',
             'icon' => 'fas fa-fw fa-folder-open',
             'active' => ['admin/categories*'],
+            'can' => 'admin.categories.index'
         ],
         [
             'text' => 'Etiquetas',
             'route' => 'admin.tags.index',
             'icon' => 'fas fa-fw fa-tags',
             'active' => ['admin/tags*'],
-        ],
-        [
-            'text' => 'change_password',
-            'url' => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'can' => 'admin.tags.index'
         ],
         [
             'text' => 'Posts',
@@ -359,11 +365,13 @@ return [
                 [
                     'text' => 'Lista de Posts',
                     'route' => 'admin.posts.index',
+                    'can' => 'admin.posts.index'
                 ],
                 
                 [
                     'text' => 'Crear nuevo Post',
                     'route' => 'admin.posts.create',
+                    'can' => 'admin.posts.create'
                 ],
             ],
         ],
