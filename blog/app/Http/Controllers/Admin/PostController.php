@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Tag;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Cache;
 
 class PostController extends Controller
 {
@@ -42,7 +43,7 @@ class PostController extends Controller
         foreach($categories as $category){
             $categories_array += [$category->id => $category->nombre];
         }
-
+        
         return view('admin.posts.create',compact('categories_array','tags','routeName'));
     }
 
@@ -64,6 +65,8 @@ class PostController extends Controller
          if($request->tags){
             $post->tags()->attach($request->tags);
          }
+
+         Cache::flush();
 
          return redirect()
          ->route('admin.posts.edit',compact('post'));
@@ -125,6 +128,7 @@ class PostController extends Controller
         if($request->tags){
             $post->tags()->sync($request->tags);
          }
+         Cache::flush();
 
         return redirect()->route('admin.posts.edit', $post)
         ->with('info', 'El post se actualizo correctamente');
@@ -139,6 +143,8 @@ class PostController extends Controller
         //authorize
         $this->authorize('author', $post);
         $post->delete();
+
+        Cache::flush();
 
         return redirect()->route('admin.posts.index')
         ->with('info', 'El post se elimino correctamente');
