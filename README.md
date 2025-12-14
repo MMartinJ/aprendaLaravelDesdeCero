@@ -18,6 +18,7 @@ Sigue estos pasos para configurar y ejecutar el proyecto en tu entorno local, to
 - **Laravel 10**
 - **PHP 8** y **Composer** instalados.
 - **Node.js** y **npm** instalados.
+- [Spatie Laravel Permission](https://github.com/spatie/laravel-permission)
 - Acceso a configurar variables en el archivo **.env** (base de datos y claves).
 
 ## Configuración del entorno
@@ -27,10 +28,21 @@ Sigue estos pasos para configurar y ejecutar el proyecto en tu entorno local, to
 ## Instalar dependencias
 - **PHP:** Ejecuta `php composer update` para instalar/actualizar dependencias de Composer.
 - **JavaScript (Vite):** Ejecuta `npm install` para instalar las dependencias del frontend.
+- **Spatie:** `composer require spatie/laravel-permission`
+
+## Configuración de almacenamiento
+- Laravel requiere un enlace simbólico para acceder a los archivos públicos desde `storage`.
+- Ejecuta el siguiente comando: `php artisan storage:link`
+
+
+## Preparación de la base de datos
+- Crear la clave de la aplicación (si es la primera vez que se levanta el proyecto): `php artisan key:generate`
+- Ejecutar las migraciones para crear las tablas: `php artisan migrate`
+- Poblar la base de datos con los seeders definidos en el proyecto: `php artisan db:seed`
 
 ## Arranque del proyecto
-- **Compilación y servidor de Vite:** Inicia `npm run dev` para compilar y servir los assets en modo desarrollo.
 - **Servidor de Laravel:** Inicia `php artisan serve` para levantar el servidor de la aplicación.
+- **Compilación y servidor de Vite:** Inicia `npm run dev` para compilar y servir los assets en modo desarrollo.
 
 ## Acceso en el navegador
 - Por defecto, abre `http://localhost:8000`.
@@ -41,18 +53,10 @@ Sigue estos pasos para configurar y ejecutar el proyecto en tu entorno local, to
 - **Assets no cargan:** Asegúrate de que `npm run dev` está corriendo y que la ruta de Vite esté correctamente configurada.
 - **Errores de conexión a DB:** Revisa host, puerto, credenciales y que el servicio de base de datos esté activo.
 
-## Resumen
-1. `cp .env.example .env` y configurar variables.
-2. `php composer update`.
-3. `npm install`.
-4. `npm run dev` y `php artisan serve`.
-5. Abrir `http://localhost:8000`.
-
 ## Estructura del proyecto
 
 * Cursos
   Éste es el primer proyecto que enseña los pasos básicos para crear un proyecto en laravel. (en el libro se llama Escuela)
-
 * Bootstrap
   Ejemplo de utilización de bootstrap en un proyecto Laravel.
 * Breeze
