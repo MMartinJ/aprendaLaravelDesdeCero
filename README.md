@@ -28,17 +28,24 @@ Sigue estos pasos para configurar y ejecutar el proyecto en tu entorno local, to
 ## Instalar dependencias
 - **PHP:** Ejecuta `php composer update` para instalar/actualizar dependencias de Composer.
 - **JavaScript (Vite):** Ejecuta `npm install` para instalar las dependencias del frontend.
-- **Spatie:** `composer require spatie/laravel-permission`
 
 ## Configuración de almacenamiento
 - Laravel requiere un enlace simbólico para acceder a los archivos públicos desde `storage`.
 - Ejecuta el siguiente comando: `php artisan storage:link`
 
-
 ## Preparación de la base de datos
 - Crear la clave de la aplicación (si es la primera vez que se levanta el proyecto): `php artisan key:generate`
-- Ejecutar las migraciones para crear las tablas: `php artisan migrate`
-- Poblar la base de datos con los seeders definidos en el proyecto: `php artisan db:seed`
+- El proyecto utiliza PHPFaker. El proveedor por defecto de imagenes no existe o está bloqueando peticiones automáticas, por lo que es necesario los siguientes cambios en el fichero Image.php
+  en la ruta /blog/vendor/fakerphp/faker/src/Faker/Provider/Image.php:
+  - Cambia en la linea:
+  `public const BASE_URL = 'https://via.placeholder.com';` por la linea `public const BASE_URL = 'https://placehold.jp';`
+  - Añade las siguientes lineas después de la linea `curl_setopt($ch, CURLOPT_FILE, $fp);`:
+  ```
+  curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+  ```
+  - Ejecutar las migraciones para crear las tablas: `php artisan migrate`
+  - Poblar la base de datos con los seeders definidos en el proyecto: `php artisan db:seed`
 
 ## Arranque del proyecto
 - **Servidor de Laravel:** Inicia `php artisan serve` para levantar el servidor de la aplicación.
